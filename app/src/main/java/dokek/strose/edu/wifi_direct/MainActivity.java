@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case MESSAGE_READ:
-                    byte[] readBuff = (byte[]) msg.obj;
-                    String tempMsg = new String(readBuff, 0, msg.arg1);
-                    read_msg_box.setText(tempMsg);
+                   // byte[] readBuff = (byte[]) msg.obj;
+                   // String tempMsg = new String(readBuff, 0, msg.arg1);
+                    read_msg_box.setText("Incidents Received");
                     break;
             }
             return true;
@@ -433,20 +433,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Object doInBackground(Object[] objects) {
 
-            //  while (bStarted) {
+
 
             try{
                 serverSocket = new ServerSocket(8881);
                 socket = serverSocket.accept();
 
-                //send data
                 OutputStream outputStream = socket.getOutputStream();
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream((outputStream));
 
                 List<Incident> MyIncidents = new ArrayList<>();
-                Incident incident1 = new Incident(1, "Fire on Route 9", "Twitter");
-                Incident incident2 = new Incident(2, "Tree down", "Facebook");
-                Incident incident3 = new Incident(3, "Flood", "Twitter");
+                Incident incident1 = new Incident(1111, "Fire on Route 9", "Twitter");
+                Incident incident2 = new Incident(2222, "Tree down", "Facebook");
+                Incident incident3 = new Incident(3333, "Flood", "Twitter");
+
                 MyIncidents.add(incident1);
                 MyIncidents.add(incident2);
                 MyIncidents.add(incident3);
@@ -464,6 +464,8 @@ public class MainActivity extends AppCompatActivity {
 
                 try{
                     PeerIncidents = (List<Incident>) objectInputStream.readObject();
+                    handler.obtainMessage(MESSAGE_READ).sendToTarget();
+
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -480,7 +482,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //  }// while started
+
 
             return null;
         }
@@ -594,6 +596,7 @@ public class MainActivity extends AppCompatActivity {
         public void readIncidents() {
             try{
                 PeerIncidents = (List<Incident>) objectInputStream.readObject();
+                handler.obtainMessage(MESSAGE_READ).sendToTarget();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
