@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         read_msg_box = (TextView) findViewById(R.id.readMsg);
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
         //writeMsg = (EditText) findViewById(R.id.writeMsg);
-        enableWifi();
+        //enableWifi();
 
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
