@@ -35,6 +35,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         initalWork();
         exqListener();
+        removePersistentGroups();
 
 
 
@@ -198,6 +200,24 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("btnDiscover", "Discovery Failed");
             }
         });
+    }
+
+    private void removePersistentGroups() {
+        try {
+            Method[] methods = WifiP2pManager.class.getMethods();
+            for (int i = 0; i < methods.length; i++) {
+                if (methods[i].getName().equals("deletePersistentGroup")) {
+                    // Remove any persistent group
+                    for (int netid = 0; netid < 32; netid++) {
+                        methods[i].invoke(mManager, mChannel, netid, null);
+                    }
+                }
+            }
+            Log.i(TAG, "Persistent groups removed");
+        } catch(Exception e) {
+            Log.e(TAG, "Failure removing persistent groups: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void connect() {
