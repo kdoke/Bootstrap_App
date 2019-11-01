@@ -91,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         initalWork();
         exqListener();
-        // discoverPeers();
-        startTimer();
+
 
 
     }
@@ -421,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
                 socket = serverSocket.accept();
 
                 //send data
-             /*   OutputStream outputStream = socket.getOutputStream();
+                OutputStream outputStream = socket.getOutputStream();
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream((outputStream));
 
                 List<Incident> MyIncidents = new ArrayList<>();
@@ -455,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
 
                 objectInputStream.close();
                 objectOutputStream.close();
-                System.out.println("Closing Sockets");*/
+                System.out.println("Closing Sockets");
                 serverSocket.close();
                 //socket.close();
             } catch (IOException e) {
