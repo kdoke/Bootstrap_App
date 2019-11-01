@@ -442,14 +442,143 @@ public class MainActivity extends AppCompatActivity {
                 OutputStream outputStream = socket.getOutputStream();
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream((outputStream));
 
-                List<Incident> MyIncidents = new ArrayList<>();
+               /* List<Incident> MyIncidents = new ArrayList<>();
                 Incident incident1 = new Incident(1111, "Fire on Route 9", "Twitter");
                 Incident incident2 = new Incident(2222, "Tree down", "Facebook");
                 Incident incident3 = new Incident(3333, "Flood", "Twitter");
 
                 MyIncidents.add(incident1);
                 MyIncidents.add(incident2);
-                MyIncidents.add(incident3);
+                MyIncidents.add(incident3);*/
+
+                List<Incident> MyIncidents = new ArrayList<>();
+                Incident myIncident41 = new Incident(3111,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:05:38", "'Rain'" , "'311'", "'Alerts'");
+                Incident myIncident42 = new Incident(3112,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:06:38", "'Rain'" , "'312'", "'Alerts'");
+                Incident myIncident43 = new Incident(3113,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:07:38", "'Rain'" , "'313'", "'Alerts'");
+                Incident myIncident44 = new Incident(3114,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:08:38", "'Rain'" , "'314'", "'Alerts'");
+                Incident myIncident45 = new Incident(3115,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:09:38", "'Rain'" , "'315'", "'Alerts'");
+                Incident myIncident46 = new Incident(3116,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:10:38", "'Rain'" , "'316'", "'Alerts'");
+                Incident myIncident47 = new Incident(3117,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:11:38", "'Rain'" , "'317'", "'Alerts'");
+                Incident myIncident48 = new Incident(3118,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:12:38", "'Rain'" , "'318'", "'Alerts'");
+                Incident myIncident49 = new Incident(3119,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:13:38", "'Rain'" , "'319'", "'Alerts'");
+                Incident myIncident50 = new Incident(3120,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:14:38", "'Rain'" , "'320'", "'Alerts'");
+                Incident myIncident51 = new Incident(3121,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:15:38", "'Rain'" , "'321'", "'Alerts'");
+                Incident myIncident52 = new Incident(3122,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:16:38", "'Rain'" , "'322'", "'Alerts'");
+                Incident myIncident53 = new Incident(3123,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:17:38", "'Rain'" , "'323'", "'Alerts'");
+                Incident myIncident54 = new Incident(3124,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:18:38", "'Rain'" , "'324'", "'Alerts'");
+                Incident myIncident55 = new Incident(3125,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:19:38", "'Rain'" , "'325'", "'Alerts'");
+                Incident myIncident56 = new Incident(3126,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:20:38", "'Rain'" , "'326'", "'Alerts'");
+                Incident myIncident57 = new Incident(3127,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:21:38", "'Rain'" , "'327'", "'Alerts'");
+                Incident myIncident58 = new Incident(3128,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:22:38", "'Rain'" , "'328'", "'Alerts'");
+                Incident myIncident59 = new Incident(3129,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:23:38", "'Rain'" , "'329'", "'Alerts'");
+                Incident myIncident60 = new Incident(3130,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-07-22 09:24:38", "'Rain'" , "'330'", "'Alerts'");
+
+
+
+                Incident myIncident61 = new Incident(4111,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:05:38", "'mmmm'" , "'411'", "'Alerts'");
+                Incident myIncident62 = new Incident(4112,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:06:38", "'mmmm'" , "'412'", "'Alerts'");
+                Incident myIncident63 = new Incident(4113,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:07:38", "'mmmm'" , "'413'", "'Alerts'");
+                Incident myIncident64 = new Incident(4114,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:08:38", "'mmmm'" , "'414'", "'Alerts'");
+                Incident myIncident65 = new Incident(4115,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:09:38", "'mmmm'" , "'415'", "'Alerts'");
+                Incident myIncident66 = new Incident(4116,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:10:38", "'mmmm'" , "'416'", "'Alerts'");
+                Incident myIncident67 = new Incident(4117,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:11:38", "'mmmm'" , "'417'", "'Alerts'");
+                Incident myIncident68 = new Incident(4118,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:12:38", "'mmmm'" , "'418'", "'Alerts'");
+                Incident myIncident69 = new Incident(4119,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:13:38", "'mmmm'" , "'419'", "'Alerts'");
+                Incident myIncident70 = new Incident(4120,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:14:38", "'mmmm'" , "'420'", "'Alerts'");
+                Incident myIncident71 = new Incident(4121,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:15:38", "'mmmm'" , "'421'", "'Alerts'");
+                Incident myIncident72 = new Incident(4122,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:16:38", "'mmmm'" , "'422'", "'Alerts'");
+                Incident myIncident73 = new Incident(4123,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:17:38", "'mmmm'" , "'423'", "'Alerts'");
+                Incident myIncident74 = new Incident(4124,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:18:38", "'mmmm'" , "'424'", "'Alerts'");
+                Incident myIncident75 = new Incident(4125,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:19:38", "'mmmm'" , "'425'", "'Alerts'");
+                Incident myIncident76 = new Incident(4126,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:20:38", "'mmmm'" , "'426'", "'Alerts'");
+                Incident myIncident77 = new Incident(4127,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:21:38", "'mmmm'" , "'427'", "'Alerts'");
+                Incident myIncident78 = new Incident(4128,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:22:38", "'mmmm'" , "'428'", "'Alerts'");
+                Incident myIncident79 = new Incident(4129,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:23:38", "'mmmm'" , "'429'", "'Alerts'");
+                Incident myIncident80 = new Incident(4130,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                        "2019-06-22 09:24:38", "'mmmm'" , "'430'", "'Alerts'");
+
+                MyIncidents.add(myIncident41);
+                MyIncidents.add(myIncident42);
+                MyIncidents.add(myIncident43);
+                MyIncidents.add(myIncident44);
+                MyIncidents.add(myIncident45);
+                MyIncidents.add(myIncident46);
+                MyIncidents.add(myIncident47);
+                MyIncidents.add(myIncident48);
+                MyIncidents.add(myIncident49);
+                MyIncidents.add(myIncident50);
+                MyIncidents.add(myIncident51);
+                MyIncidents.add(myIncident52);
+                MyIncidents.add(myIncident53);
+                MyIncidents.add(myIncident54);
+                MyIncidents.add(myIncident55);
+                MyIncidents.add(myIncident56);
+                MyIncidents.add(myIncident57);
+                MyIncidents.add(myIncident58);
+                MyIncidents.add(myIncident59);
+                MyIncidents.add(myIncident60);
+                MyIncidents.add(myIncident61);
+                MyIncidents.add(myIncident62);
+                MyIncidents.add(myIncident63);
+                MyIncidents.add(myIncident64);
+                MyIncidents.add(myIncident65);
+                MyIncidents.add(myIncident66);
+                MyIncidents.add(myIncident67);
+                MyIncidents.add(myIncident68);
+                MyIncidents.add(myIncident69);
+                MyIncidents.add(myIncident70);
+                MyIncidents.add(myIncident71);
+                MyIncidents.add(myIncident72);
+                MyIncidents.add(myIncident73);
+                MyIncidents.add(myIncident74);
+                MyIncidents.add(myIncident75);
+                MyIncidents.add(myIncident76);
+                MyIncidents.add(myIncident77);
+                MyIncidents.add(myIncident78);
+                MyIncidents.add(myIncident79);
+                MyIncidents.add(myIncident80);
+
+
+
 
                 if (MyIncidents.size() != 0) {
                     objectOutputStream.writeObject(MyIncidents);
@@ -561,12 +690,144 @@ public class MainActivity extends AppCompatActivity {
             MyIncidents = new ArrayList<>();
 
             List<Incident> MyIncidents = new ArrayList<>();
-            Incident incident1 = new Incident(1, "Fire on Route 9", "Twitter");
-            Incident incident2 = new Incident(2, "Tree down", "Facebook");
-            Incident incident3 = new Incident(3, "Flood", "Twitter");
-            MyIncidents.add(incident1);
-            MyIncidents.add(incident2);
-            MyIncidents.add(incident3);
+
+              /* List<Incident> MyIncidents = new ArrayList<>();
+                Incident incident1 = new Incident(1111, "Fire on Route 9", "Twitter");
+                Incident incident2 = new Incident(2222, "Tree down", "Facebook");
+                Incident incident3 = new Incident(3333, "Flood", "Twitter");
+
+                MyIncidents.add(incident1);
+                MyIncidents.add(incident2);
+                MyIncidents.add(incident3);*/
+
+
+
+            Incident myIncident1 = new Incident(1111,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:05:38", "'Fire'" , "'111'", "'Alerts'");
+            Incident myIncident2 = new Incident(1112,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:06:38", "'Fire'" , "'112'", "'Alerts'");
+            Incident myIncident3 = new Incident(1113,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:07:38", "'Fire'" , "'113'", "'Alerts'");
+            Incident myIncident4 = new Incident(1114,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:08:38", "'Fire'" , "'114'", "'Alerts'");
+            Incident myIncident5 = new Incident(1115,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:09:38", "'Fire'" , "'115'", "'Alerts'");
+            Incident myIncident6 = new Incident(1116,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:10:38", "'Fire'" , "'116'", "'Alerts'");
+            Incident myIncident7 = new Incident(1117,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:11:38", "'Fire'" , "'117'", "'Alerts'");
+            Incident myIncident8 = new Incident(1118,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:12:38", "'Fire'" , "'118'", "'Alerts'");
+            Incident myIncident9 = new Incident(1119,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:13:38", "'Fire'" , "'119'", "'Alerts'");
+            Incident myIncident10 = new Incident(1120,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:14:38", "'Fire'" , "'120'", "'Alerts'");
+            Incident myIncident11 = new Incident(1121,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:05:38", "'Fire'" , "'121'", "'Alerts'");
+            Incident myIncident12 = new Incident(1122,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:06:38", "'Fire'" , "'122'", "'Alerts'");
+            Incident myIncident13 = new Incident(1123,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:07:38", "'Fire'" , "'123'", "'Alerts'");
+            Incident myIncident14 = new Incident(1124,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:08:38", "'Fire'" , "'124'", "'Alerts'");
+            Incident myIncident15 = new Incident(1125,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:09:38", "'Fire'" , "'125'", "'Alerts'");
+            Incident myIncident16 = new Incident(1126,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:10:38", "'Fire'" , "'126'", "'Alerts'");
+            Incident myIncident17 = new Incident(1127,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:11:38", "'Fire'" , "'127'", "'Alerts'");
+            Incident myIncident18 = new Incident(1128,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:12:38", "'Fire'" , "'128'", "'Alerts'");
+            Incident myIncident19 = new Incident(1129,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:13:38", "'Fire'" , "'129'", "'Alerts'");
+            Incident myIncident20 = new Incident(1130,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-09-22 09:14:38", "'Fire'" , "'130'", "'Alerts'");
+
+
+
+            Incident myIncident21 = new Incident(2111,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:05:38", "'Snow'" , "'211'", "'Alerts'");
+            Incident myIncident22 = new Incident(2112,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:06:38", "'Snow'" , "'212'", "'Alerts'");
+            Incident myIncident23 = new Incident(2113,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:07:38", "'Snow'" , "'213'", "'Alerts'");
+            Incident myIncident24 = new Incident(2114,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:08:38", "'Snow'" , "'214'", "'Alerts'");
+            Incident myIncident25 = new Incident(2115,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:09:38", "'Snow'" , "'215'", "'Alerts'");
+            Incident myIncident26 = new Incident(2116,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:10:38", "'Snow'" , "'216'", "'Alerts'");
+            Incident myIncident27 = new Incident(2117,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:11:38", "'Snow'" , "'217'", "'Alerts'");
+            Incident myIncident28 = new Incident(2118,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:12:38", "'Snow'" , "'218'", "'Alerts'");
+            Incident myIncident29 = new Incident(2119,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:13:38", "'Snow'" , "'219'", "'Alerts'");
+            Incident myIncident30 = new Incident(2120,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:14:38", "'Snow'" , "'220'", "'Alerts'");
+            Incident myIncident31 = new Incident(2121,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:05:38", "'Snow'" , "'221'", "'Alerts'");
+            Incident myIncident32 = new Incident(2122,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:06:38", "'Snow'" , "'222'", "'Alerts'");
+            Incident myIncident33 = new Incident(2123,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:07:38", "'Snow'" , "'223'", "'Alerts'");
+            Incident myIncident34 = new Incident(2124,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:08:38", "'Snow'" , "'224'", "'Alerts'");
+            Incident myIncident35 = new Incident(2125,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:09:38", "'Snow'" , "'225'", "'Alerts'");
+            Incident myIncident36 = new Incident(2126,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:10:38", "'Snow'" , "'226'", "'Alerts'");
+            Incident myIncident37 = new Incident(2127,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:11:38", "'Snow'" , "'227'", "'Alerts'");
+            Incident myIncident38 = new Incident(2128,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:12:38", "'Snow'" , "'228'", "'Alerts'");
+            Incident myIncident39 = new Incident(2129,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:13:38", "'Snow'" , "'229'", "'Alerts'");
+            Incident myIncident40 = new Incident(2130,"Fire started on route 87. All traffic is being diverted to alternate routes.","URL", "Twitter", 1, 1,
+                    "2019-08-22 09:14:38", "'Snow'" , "'230'", "'Alerts'");
+
+
+            MyIncidents.add(myIncident1);
+            MyIncidents.add(myIncident2);
+            MyIncidents.add(myIncident3);
+            MyIncidents.add(myIncident4);
+            MyIncidents.add(myIncident5);
+            MyIncidents.add(myIncident6);
+            MyIncidents.add(myIncident7);
+            MyIncidents.add(myIncident8);
+            MyIncidents.add(myIncident9);
+            MyIncidents.add(myIncident10);
+            MyIncidents.add(myIncident11);
+            MyIncidents.add(myIncident12);
+            MyIncidents.add(myIncident13);
+            MyIncidents.add(myIncident14);
+            MyIncidents.add(myIncident15);
+            MyIncidents.add(myIncident16);
+            MyIncidents.add(myIncident17);
+            MyIncidents.add(myIncident18);
+            MyIncidents.add(myIncident19);
+            MyIncidents.add(myIncident20);
+            MyIncidents.add(myIncident21);
+            MyIncidents.add(myIncident22);
+            MyIncidents.add(myIncident23);
+            MyIncidents.add(myIncident24);
+            MyIncidents.add(myIncident25);
+            MyIncidents.add(myIncident26);
+            MyIncidents.add(myIncident27);
+            MyIncidents.add(myIncident28);
+            MyIncidents.add(myIncident29);
+            MyIncidents.add(myIncident30);
+            MyIncidents.add(myIncident31);
+            MyIncidents.add(myIncident32);
+            MyIncidents.add(myIncident33);
+            MyIncidents.add(myIncident34);
+            MyIncidents.add(myIncident35);
+            MyIncidents.add(myIncident36);
+            MyIncidents.add(myIncident37);
+            MyIncidents.add(myIncident38);
+            MyIncidents.add(myIncident39);
+            MyIncidents.add(myIncident40);
+
 
            /* MyIncidents.addAll(databaseHelper.getAllIncidents().values());
             MyIncidents.add(new Incident(-1));*/
