@@ -28,10 +28,12 @@ import android.widget.TextView;
 import android.net.wifi.WifiManager;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public static String TAG = "MainActivity";
     Button btnOnOff;
     Button btnDiscover;
-    Button btnSend;
+    Button btnExecute;
     ListView listView;
     TextView read_msg_box;
     TextView connectionStatus;
@@ -68,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
     List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
     String[] deviceNameArray;
     WifiP2pDevice[] deviceArray;
+    ServerClass mServerClass;
+    ClientClass mClientClass;
+    String mFlag = "";
+    InetAddress mGroupOwnerAddress;
+    boolean connected = false;
+
 
     static final int MESSAGE_READ = 1;
     boolean bStarted = true;
@@ -144,6 +152,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btnExecute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connected){
+                    if (mFlag.equals("server")){
+                        mServerClass = new ServerClass();
+                        mServerClass.execute();
+                    }else{
+                        mClientClass = new ClientClass(mGroupOwnerAddress);
+                        mClientClass.execute();
+                    }
+                }else {
+                    Toast.makeText(MainActivity.this, "Not connected yet", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
        /* btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     private void initalWork() {
         btnOnOff = (Button) findViewById(R.id.onOff);
         btnDiscover = (Button) findViewById(R.id.discoverPeers);
-        // btnSend = (Button) findViewById(R.id.sendButton);
+        btnExecute = (Button) findViewById(R.id.sendButton);
         listView = (ListView) findViewById(R.id.peerListView);
         read_msg_box = (TextView) findViewById(R.id.readMsg);
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
@@ -291,14 +319,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "connected: " + s);
                 WriteFile(s);
                 connectionStatus.setText("GroupOwner");
-                ServerClass serverClass = new ServerClass();
-                serverClass.execute();
+
+                mFlag = "server";
+                connected = true;
 
                 Log.d("ServerClassThread: ", "Server Thread Started");
                 Toast.makeText(getApplicationContext(), "Server Thread Started", Toast.LENGTH_SHORT).show();
             } else if (wifiP2pInfo.groupFormed) {
-                ClientClass clientClass = new ClientClass(groupOwnerAddress);
-                clientClass.execute();
+                mFlag="client";
+                connected = true;
+                mGroupOwnerAddress = groupOwnerAddress;
                 Log.d("groupOwnerAddress: ", "address: " + groupOwnerAddress);
                 connectionStatus.setText("Client");
                 Log.d("ClientClassThread: ", "Client Thread Started");
@@ -741,6 +771,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!PeerIncidents.isEmpty()){
                 System.out.println("Received [" + PeerIncidents.size() + "] messages from: " + socket);
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    ObjectOutput out = null;
+
+                    out=new ObjectOutputStream(bos);
+                    out.writeObject(PeerIncidents);
+                    byte[] yourBytes = bos.toByteArray();
+                    long mBytes = yourBytes.length;
+                    Log.i(TAG, "doInBackground: Bytes received: " + mBytes);
+
                 }
 
 

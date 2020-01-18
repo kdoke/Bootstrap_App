@@ -60,4 +60,13 @@
         android:textSize="18sp"
         android:textStyle="italic" />
 
+    <Button
+        android:id="@+id/execute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/onOff"
+        android:layout_alignBottom="@+id/onOff"
+        android:layout_centerHorizontal="true"
+        android:text="Execute" />
+
 </RelativeLayout>
