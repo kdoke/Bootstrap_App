@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Wifi_Direct</string>
+    <string name="app_name">Bootstrap</string>
+    <string-array name="role">
+        <item>Groupowner</item>
+        <item>Client</item>
+    </string-array>
 </resources>

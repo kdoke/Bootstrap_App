@@ -76,9 +76,8 @@ public class MainActivity extends AppCompatActivity {
     WifiP2pDevice[] deviceArray;
     ServerClass mServerClass;
     ClientClass mClientClass;
-    String mFlag = "";
     InetAddress mGroupOwnerAddress;
-    boolean connected = false;
+
 
 
     static final int MESSAGE_READ = 1;
@@ -190,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
     private void initialWork() {
         btnOnOff = (Button) findViewById(R.id.onOff);
         btnDiscover = (Button) findViewById(R.id.discoverPeers);
-        btnExecute = (Button) findViewById(R.id.sendButton);
+       // btnExecute = (Button) findViewById(R.id.sendButton);
         listView = (ListView) findViewById(R.id.peerListView);
         read_msg_box = (TextView) findViewById(R.id.readMsg);
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
