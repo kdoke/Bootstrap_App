@@ -13,6 +13,7 @@
 
 
     <Spinner
+        android:id="@+id/role"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/role" />
@@ -33,17 +34,17 @@
         android:textSize="18sp"
         android:textStyle="italic" />
 
-    <ListView
-        android:id="@+id/peerListView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background=" #8298af " />
-
     <TextView
         android:id="@+id/readMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom" >
     </TextView>
+
+    <ListView
+        android:id="@+id/peerListView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background=" #8298af " />
 
 </LinearLayout>
