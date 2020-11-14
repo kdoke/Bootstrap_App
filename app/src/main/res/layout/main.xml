@@ -12,11 +12,19 @@
     tools:context=".MainActivity">
 
 
-    <Spinner
-        android:id="@+id/role"
+    <Button
+        android:id="@+id/createGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/role" />
+        tools:text="Create Group"
+        android:text="Create Group"/>
+
+    <Button
+        android:id="@+id/removeGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Create Group"
+        android:text="Remove Group"/>
 
     <Button
         android:id="@+id/discoverPeers"

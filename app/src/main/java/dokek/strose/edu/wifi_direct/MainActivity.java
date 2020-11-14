@@ -44,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     Button btnOnOff;
     Button btnDiscover;
+    Button btnOwner;
+    Button btnRmGroup;
     ListView listView;
     TextView read_msg_box;
     TextView connectionStatus;
-    Spinner spinnerRoleType;
 
 
     WifiManager wifiManager;
@@ -64,25 +65,6 @@ public class MainActivity extends AppCompatActivity {
     Peer mClientClass;
     InetAddress mGroupOwnerAddress;
     int intentNumber;
-    Context context;
-
-
-
-    static final int MESSAGE_READ = 1;
-
-    Handler handler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            switch (msg.what) {
-                case MESSAGE_READ:
-                   // byte[] readBuff = (byte[]) msg.obj;
-                   // String tempMsg = new String(readBuff, 0, msg.arg1);
-                    read_msg_box.setText("Message Received");
-                    break;
-            }
-            return true;
-        }
-    });
 
 
     @Override
@@ -91,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         initialWork();
         exqListener();
-        removePersistentGroups();
         removeGroup();
 
         if (ContextCompat.checkSelfPermission(MainActivity.this,
@@ -151,13 +132,55 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnOwner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mManager.createGroup(mChannel, new WifiP2pManager.ActionListener() {
+                    @Override
+                    public void onSuccess() {
+                        Log.i(TAG, "onSuccess: " + "Group Created");
+                    }
+
+                    @Override
+                    public void onFailure(int i) {
+
+                    }
+                });
+            }
+        });
+
+
+        btnRmGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mManager.requestGroupInfo(mChannel, new WifiP2pManager.GroupInfoListener() {
+                    @Override
+                    public void onGroupInfoAvailable(WifiP2pGroup group) {
+                        if (group != null) {
+                            mManager.removeGroup(mChannel, new WifiP2pManager.ActionListener() {
+                                @Override
+                                public void onSuccess() {
+                                    Log.d(TAG, "onSuccess: group removed");
+                                }
+
+                                @Override
+                                public void onFailure(int reason) {
+                                    Log.d(TAG, "onFailure: can't remove group " + reason);
+
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final WifiP2pDevice device = deviceArray[i];
                 WifiP2pConfig config = new WifiP2pConfig();
-                config.groupOwnerIntent = intentNumber;
+               // config.groupOwnerIntent = 0;
                 Log.i(TAG, "onItemClick: " + intentNumber);
                 config.deviceAddress = device.deviceAddress;
                 mManager.connect(mChannel, config, new WifiP2pManager.ActionListener() {
@@ -177,28 +200,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        spinnerRoleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                intentNumber = 0;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                intentNumber = 15;
-            }
-        });
-
     }
 
     private void initialWork() {
         btnOnOff = (Button) findViewById(R.id.onOff);
         btnDiscover = (Button) findViewById(R.id.discoverPeers);
+        btnOwner = (Button) findViewById(R.id.createGroup);
+        btnRmGroup = (Button) findViewById(R.id.removeGroup);
         listView = (ListView) findViewById(R.id.peerListView);
         read_msg_box = (TextView) findViewById(R.id.readMsg);
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
-        spinnerRoleType = findViewById(R.id.role);
-        //enableWifi();
+
 
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
@@ -218,24 +230,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void discoverPeers() {
-        final String myDeviceName = getMacAddr();
-        mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
-            @Override
-            public void onSuccess() {
-                connectionStatus.setText("Discovery Started");
-                Log.d("btnDiscover", "starting discovery");
-                String s = "Discover" + "," + String.valueOf(System.currentTimeMillis()) + "," + myDeviceName + "," + "null" + "\n";
-                Log.d(TAG, "onSuccess: discovery: " + s);
-            }
-            @Override
-            public void onFailure(int reason) {
-                connectionStatus.setText("Discovery Starting Failed");
-                Log.d("btnDiscover", "Discovery Failed");
-            }
-        });
-    }
-
     private void removePersistentGroups() {
         try {
             Method[] methods = WifiP2pManager.class.getMethods();
@@ -254,25 +248,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void connect() {
-        WifiP2pConfig config = new WifiP2pConfig();
-        final String device = "38:80:df:94:02:15"; // host address
-        config.deviceAddress = device;
-        mManager.connect(mChannel, config, new WifiP2pManager.ActionListener() {
-            @Override
-            public void onSuccess() {
-                Toast.makeText(getApplicationContext(), "Connected to " + device, Toast.LENGTH_SHORT).show();
-                Log.d("Connected:", "Connected to: " + device);
-            }
-
-            @Override
-            public void onFailure(int reason) {
-                Toast.makeText(getApplicationContext(), "Not Connected ", Toast.LENGTH_SHORT).show();
-                Log.d("Connected: ", "Not Connected to selected device " + reason);
-            }
-        });
-
-    }
 
     WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
         @Override
@@ -349,6 +324,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void createGroup(){
+
+        mManager.createGroup(mChannel, new WifiP2pManager.ActionListener() {
+            @Override
+            public void onSuccess() {
+                Log.i(TAG, "onSuccess: " + "Group Created");
+            }
+
+            @Override
+            public void onFailure(int i) {
+
+            }
+        });
+
+    }
+
     private void removeGroup() {
 
         mManager.requestGroupInfo(mChannel, new WifiP2pManager.GroupInfoListener() {
@@ -420,88 +411,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mReceiver);
-        removeGroup();
         removePersistentGroups();
 
     }
 
-   /* public class ServerClass extends AsyncTask {
-        private DatagramSocket socket;
-        boolean received = false;
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-
-            String send = "";
-            String s = "This is an alert of the Emergency Broadcasting System. Please seek shelter until flood has expired!!";
-            for(int i=0; i<500; i++) {
-                send += s; }
-
-            try {
-                // open a socket and wait for the client to connect
-                socket = new DatagramSocket(8881);
-                byte[] receiveData = new byte[55000];
-                byte[] sendData;
-                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                Log.i(TAG, "Waiting for client to connect .....");
-                socket.receive(receivePacket);
-                String str = new String(receivePacket.getData(),0,receivePacket.getLength());
-                Log.i(TAG, "Receive String Hello From Client: " + str.length());
-                received=true;
-
-            } catch (SocketException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            return null;
-        }
-
-    }*/
-
-  /*  public class ClientClass extends AsyncTask {
-        private final static String TAG = "Peer";
-        private String hostAdd;
-        boolean received=false;
-        DatagramSocket socket;
-
-        public ClientClass(InetAddress hostAddress) {
-            this.hostAdd = hostAddress.getHostAddress();
-
-        }
-
-
-        @Override
-        protected String doInBackground(Object[] object) {
-            try {
-
-                DatagramSocket socket = new DatagramSocket();
-                InetAddress IPAddress = InetAddress.getByName(hostAdd);
-                byte[] receiveData = new byte[50000];
-                byte[] sendData;
-                String sentence = "Hello from UDP client";
-                sendData = sentence.getBytes();
-                Log.i(TAG, "Sending " + sentence);
-
-                DatagramPacket sendingPacket = new DatagramPacket(sendData,sendData.length,IPAddress, 8881);
-                socket.send(sendingPacket);
-                Log.i(TAG, "Sent Hello to server");
-
-
-            } catch (SocketException e) {
-                e.printStackTrace();
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-
-        }
-
-
-    }*/
 }
