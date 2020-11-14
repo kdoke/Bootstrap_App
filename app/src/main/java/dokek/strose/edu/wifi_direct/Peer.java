@@ -1,5 +1,6 @@
 package dokek.strose.edu.wifi_direct;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,10 +28,12 @@ public class Peer extends AsyncTask {
     private Socket socket;
     InputStream inputStream;
     OutputStream outputStream;
+    Context context;
 
 
-    public Peer(InetAddress hostAddress) {
+    public Peer(InetAddress hostAddress, Context mContext) {
       this.hostAdd = hostAddress.getHostAddress();
+      this.context = mContext;
     }
 
 
@@ -71,9 +74,8 @@ public class Peer extends AsyncTask {
 
     @Override
     protected void onPostExecute(Object o) {
-
-        if(received){
-
+        if(received) {
+            Toast.makeText(context, "Data Received", Toast.LENGTH_SHORT).show();
         }
         super.onPostExecute(o);
     }

@@ -1,5 +1,6 @@
 package dokek.strose.edu.wifi_direct;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.security.acl.Group;
 
 public class GroupOwner extends AsyncTask {
     private static final String TAG = "GroupOwner";
@@ -24,6 +26,12 @@ public class GroupOwner extends AsyncTask {
     InputStream inputStream;
     OutputStream outputStream;
     boolean received = false;
+    Context context;
+
+    public GroupOwner(Context mContext){
+        this.context = mContext;
+    }
+
 
     @Override
     protected Object doInBackground(Object[] objects) {
@@ -62,9 +70,8 @@ public class GroupOwner extends AsyncTask {
 
     @Override
     protected void onPostExecute(Object o) {
-
-        if(received){
-
+        if(received) {
+            Toast.makeText(context, "Data Received", Toast.LENGTH_SHORT).show();
         }
         super.onPostExecute(o);
     }

@@ -65,12 +65,14 @@ public class MainActivity extends AppCompatActivity {
     Peer mClientClass;
     InetAddress mGroupOwnerAddress;
     int intentNumber;
+    Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        context = getApplicationContext();
         initialWork();
         exqListener();
       //  removeGroup();
@@ -291,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
             final InetAddress groupOwnerAddress = wifiP2pInfo.groupOwnerAddress;
             final String myDeviceName = getMacAddr();
             if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner) {
-                mServerClass = new GroupOwner();
+                mServerClass = new GroupOwner(context);
                 mServerClass.execute();
                 String s = "Connected" + "," + String.valueOf(System.currentTimeMillis()) + "," + myDeviceName + "," + "null" + "\n";
                 Log.d(TAG, "connected: " + s);
@@ -302,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Server Thread Started", Toast.LENGTH_SHORT).show();
             } else if (wifiP2pInfo.groupFormed) {
                 mGroupOwnerAddress = groupOwnerAddress;
-                mClientClass = new Peer(mGroupOwnerAddress);
+                mClientClass = new Peer(mGroupOwnerAddress, context);
                 mClientClass.execute();
                 Log.d("groupOwnerAddress: ", "address: " + groupOwnerAddress);
                 connectionStatus.setText("Client");
