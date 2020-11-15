@@ -295,11 +295,7 @@ public class MainActivity extends AppCompatActivity {
             if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner) {
                 mServerClass = new GroupOwner(context);
                 mServerClass.execute();
-                String s = "Connected" + "," + String.valueOf(System.currentTimeMillis()) + "," + myDeviceName + "," + "null" + "\n";
-                Log.d(TAG, "connected: " + s);
                 connectionStatus.setText("GroupOwner");
-
-
                 Log.d("ServerClassThread: ", "Server Thread Started");
                 Toast.makeText(getApplicationContext(), "Server Thread Started", Toast.LENGTH_SHORT).show();
             } else if (wifiP2pInfo.groupFormed) {

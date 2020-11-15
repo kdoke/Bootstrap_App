@@ -41,7 +41,6 @@ public class GroupOwner extends AsyncTask {
             send += s; }
 
         try {
-            // open a socket and wait for the client to connect
            serverSocket = new ServerSocket(8881);
            socket = serverSocket.accept();
             Log.i(TAG, "Waiting for client to connect .....");
@@ -65,6 +64,14 @@ public class GroupOwner extends AsyncTask {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        finally {
+            try{
+                Log.d(TAG, "doInBackground: " + "serverSocket closed");
+                serverSocket.close();
+            } catch (IOException e) { }
+
+            }
         return null;
     }
 

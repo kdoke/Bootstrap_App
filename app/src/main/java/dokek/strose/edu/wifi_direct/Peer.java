@@ -69,6 +69,14 @@ public class Peer extends AsyncTask {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        finally {
+            try{
+                Log.d(TAG, "doInBackground: " + "client socket closed");
+                socket.close();
+            } catch (IOException e) { }
+
+        }
         return null;
     }
 
