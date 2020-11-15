@@ -13,6 +13,7 @@ import android.net.wifi.p2p.WifiP2pGroup;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main);
         context = getApplicationContext();
         initialWork();
-        exqListener();
+        executeListeners();
+        setDeviceName("EApp_" + getMacAddr());
 
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -111,8 +113,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void initialWork() {
+        btnOnOff = (Button) findViewById(R.id.onOff);
+        btnDiscover = (Button) findViewById(R.id.discoverPeers);
+        btnOwner = (Button) findViewById(R.id.createGroup);
+        btnRmGroup = (Button) findViewById(R.id.removeGroup);
+        listView = (ListView) findViewById(R.id.peerListView);
+        read_msg_box = (TextView) findViewById(R.id.readMsg);
+        connectionStatus = (TextView) findViewById(R.id.connectionStatus);
 
-    private void exqListener() {
+
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        mChannel = mManager.initialize(this, getMainLooper(), null);
+
+        mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this);
+
+        mIntentFilter = new IntentFilter();
+        // indicates a change in the peer-to-peer status
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        // indicates a change in the list of available peers
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        // indicates the state of connectivity has changed
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        // indicates that this device's details have changed
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+    }
+
+
+
+    private void executeListeners() {
         btnDiscover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,33 +231,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void initialWork() {
-        btnOnOff = (Button) findViewById(R.id.onOff);
-        btnDiscover = (Button) findViewById(R.id.discoverPeers);
-        btnOwner = (Button) findViewById(R.id.createGroup);
-        btnRmGroup = (Button) findViewById(R.id.removeGroup);
-        listView = (ListView) findViewById(R.id.peerListView);
-        read_msg_box = (TextView) findViewById(R.id.readMsg);
-        connectionStatus = (TextView) findViewById(R.id.connectionStatus);
-
-
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-        mChannel = mManager.initialize(this, getMainLooper(), null);
-
-        mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this);
-
-        mIntentFilter = new IntentFilter();
-        // indicates a change in the peer-to-peer status
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-        // indicates a change in the list of available peers
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-        // indicates the state of connectivity has changed
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-        // indicates that this device's details have changed
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
     }
 
 
@@ -361,7 +364,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private String capitalize(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+        char first = s.charAt(0);
+        if (Character.isUpperCase(first)) {
+            return s;
+        } else {
+            return Character.toUpperCase(first) + s.substring(1);
+        }
+    }
+
     public void setDeviceName(String devName) {
+        String name = devName;
+
         try {
             Class[] paramTypes = new Class[3];
             paramTypes[0] = WifiP2pManager.Channel.class;
@@ -394,6 +412,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 
     public static String getMacAddr() {
         try{

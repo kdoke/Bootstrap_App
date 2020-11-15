@@ -9,6 +9,7 @@ import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.util.Log;
 import android.widget.Toast;
 
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
@@ -29,6 +30,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         String action = intent.getAction();
+
         // indicates whether Wi-Fi Peer-to-Peer is enabled
         if(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION.equals(action))
         {
@@ -66,7 +68,8 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
         }
         // indicates this device's configuration details have changed
         else if(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)){
-            // do something
+            WifiP2pDevice self = (WifiP2pDevice) intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_DEVICE);
+            //Log.d("Broadcast", "onReceive: " + self);
         }
 
     }
