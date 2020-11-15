@@ -30,6 +30,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.net.wifi.WifiManager;
 import android.widget.Toast;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
         initialWork();
         exqListener();
-      //  removeGroup();
 
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -88,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             }
         }
-
-
     }
 
 
@@ -360,6 +359,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setDeviceName(String devName) {
+        try {
+            Class[] paramTypes = new Class[3];
+            paramTypes[0] = WifiP2pManager.Channel.class;
+            paramTypes[1] = String.class;
+            paramTypes[2] = WifiP2pManager.ActionListener.class;
+            Method setDeviceName = mManager.getClass().getMethod("setDeviceName", paramTypes);
+            setDeviceName.setAccessible(true);
+            Object arglist[] = new Object[3];
+            arglist[0] = mChannel;
+            arglist[1] = devName;
+            arglist[2] = new WifiP2pManager.ActionListener() {
+                @Override
+                public void onSuccess() {
+                    //updateLog("setDeviceName: onSuccess");
+                }
+
+                @Override
+                public void onFailure(int reason) {
+                    //updateLog("setDeviceName: onSuccess");
+                }
+            };
+            setDeviceName.invoke(mManager, arglist);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getMacAddr() {
