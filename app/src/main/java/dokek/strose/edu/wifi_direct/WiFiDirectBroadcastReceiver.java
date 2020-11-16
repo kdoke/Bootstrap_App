@@ -12,6 +12,9 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 
     private WifiP2pManager mManager;
@@ -73,4 +76,6 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
         }
 
     }
+
+
 }

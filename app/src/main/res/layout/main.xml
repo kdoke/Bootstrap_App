@@ -13,6 +13,12 @@
 
 
     <Button
+        android:id="@+id/changeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Device Name"/>
+
+    <Button
         android:id="@+id/createGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +29,6 @@
         android:id="@+id/removeGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Create Group"
         android:text="Remove Group"/>
 
     <Button
@@ -31,6 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Discover Peers"/>
+
+    <ListView
+        android:id="@+id/peerListView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background=" #8298af " />
 
     <TextView
         android:id="@+id/connectionStatus"
@@ -42,17 +53,5 @@
         android:textSize="18sp"
         android:textStyle="italic" />
 
-    <ListView
-        android:id="@+id/peerListView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background=" #8298af " />
-
-    <TextView
-        android:id="@+id/readMsg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom" >
-    </TextView>
 
 </LinearLayout>
